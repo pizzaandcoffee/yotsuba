@@ -87,6 +87,10 @@ public class Board {
         return boardArray;
     }
 
+    public ArrayList<LastModifiedPage> getLastModifiedPages() {
+        return LastModifiedPage.getPages(this);
+    }
+
     public String getBoardCode() {
         return boardCode;
     }
