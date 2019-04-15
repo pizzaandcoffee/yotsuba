@@ -3,10 +3,9 @@ package rocks.pizzaandcoffee.yotsuba.channel4;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import rocks.pizzaandcoffee.yotsuba.channel4.service.DefaultChannel4Service;
+import rocks.pizzaandcoffee.yotsuba.channel4.service.Channel4Service;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Board {
@@ -65,22 +64,19 @@ public class Board {
     }
 
     public static ArrayList<Board> getBoards() {
+        return getBoards(new DefaultChannel4Service());
+    }
+
+    public static ArrayList<Board> getBoards(Channel4Service service) {
         ArrayList<Board> boardArray = new ArrayList<Board>();
         try {
-            URL boardsUrl = new URL("https://a.4cdn.org/boards.json");
-            String jsonString = Util.getJsonString(boardsUrl);
-            JSONObject root = new JSONObject(jsonString);
+            JSONObject root = service.getBoards();
             JSONArray boards = (JSONArray) root.get("boards");
 
             for (int i = 0; i < boards.length(); i++) {
                 JSONObject board =(JSONObject) boards.get(i);
                 boardArray.add(new Board(board));
             }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }

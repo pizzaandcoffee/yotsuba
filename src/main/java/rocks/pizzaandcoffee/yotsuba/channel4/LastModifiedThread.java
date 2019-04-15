@@ -2,8 +2,8 @@ package rocks.pizzaandcoffee.yotsuba.channel4;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
+import rocks.pizzaandcoffee.yotsuba.channel4.service.DefaultChannel4Service;
+import rocks.pizzaandcoffee.yotsuba.channel4.service.Channel4Service;
 
 public class LastModifiedThread {
     private final String board;
@@ -24,18 +24,14 @@ public class LastModifiedThread {
         return lastModified;
     }
 
-    public Thread getThread() {
-       String urlString =  new StringBuilder("http://a.4cdn.org/")
-               .append(this.board)
-               .append("/thread/")
-               .append(this.number)
-               .append(".json")
-               .toString();
 
+    public Thread getThread() {
+        return getThread(new DefaultChannel4Service());
+    }
+
+    public Thread getThread(Channel4Service service) {
        try {
-           URL url = new URL(urlString);
-           String jsonString = Util.getJsonString(url);
-           JSONObject json = new JSONObject(jsonString);
+           JSONObject json = service.getThread(this.board, this.number);
            return new Thread(json, this.board);
        } catch (Exception e) {
            e.printStackTrace();
