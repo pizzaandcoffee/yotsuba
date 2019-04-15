@@ -49,18 +49,18 @@ public class Board {
     }
 
     public Board(JSONObject json) throws JSONException {
-        this.boardCode = (String) json.getString("board");
-        this.title = (String) json.get("title");
-        this.isWorkSafe = (Integer) json.get("ws_board") == 1;
-        this.threadsPerPage = (Integer) json.get("per_page");
-        this.pages = (Integer) json.get("pages");
-        this.maxFilesize = (Integer) json.get("max_filesize");
-        this.maxWebmFilesize = (Integer) json.get("max_webm_filesize");
-        this.maxCommentChars = (Integer) json.get("max_comment_chars");
-        this.bumpLimit = (Integer) json.get("bump_limit");
-        this.imageLimit = (Integer) json.get("image_limit");
+        this.boardCode = json.getString("board");
+        this.title = json.getString("title");
+        this.isWorkSafe = json.getInt("ws_board") == 1;
+        this.threadsPerPage = json.getInt("per_page");
+        this.pages = json.getInt("pages");
+        this.maxFilesize = json.getInt("max_filesize");
+        this.maxWebmFilesize = json.getInt("max_webm_filesize");
+        this.maxCommentChars = json.getInt("max_comment_chars");
+        this.bumpLimit = json.getInt("bump_limit");
+        this.imageLimit = json.getInt("image_limit");
         this.cooldowns = new Cooldowns((JSONObject) json.get("cooldowns"));
-        this.metaDescription = (String) json.get("meta_description");
+        this.metaDescription = json.getString("meta_description");
         this.isArchived = json.opt("is_archived") != null;
     }
 

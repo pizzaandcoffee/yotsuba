@@ -10,16 +10,18 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class LastModifiedPage {
+    private final String board;
     private final Integer page;
-    private final ArrayList<LasModifiedThread> threads;
+    private final ArrayList<LastModifiedThread> threads;
 
-    public LastModifiedPage(JSONObject json) throws JSONException {
+    public LastModifiedPage(JSONObject json, String board) throws JSONException {
+        this.board = board;
         this.page = json.getInt("page");
-        this.threads = new ArrayList<LasModifiedThread>();
+        this.threads = new ArrayList<LastModifiedThread>();
         JSONArray array = json.getJSONArray("threads");
 
         for (int i = 0; i < array.length(); i++) {
-            this.threads.add(new LasModifiedThread(array.getJSONObject(i)));
+            this.threads.add(new LastModifiedThread(array.getJSONObject(i), this.board));
         }
     }
 
@@ -34,7 +36,7 @@ public class LastModifiedPage {
             JSONArray jsonArray = new JSONArray(jsonString);
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                boardArray.add(new LastModifiedPage(jsonArray.optJSONObject(i)));
+                boardArray.add(new LastModifiedPage(jsonArray.optJSONObject(i), board));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -55,7 +57,7 @@ public class LastModifiedPage {
         return page;
     }
 
-    public ArrayList<LasModifiedThread> getThreads() {
+    public ArrayList<LastModifiedThread> getThreads() {
         return threads;
     }
 }
