@@ -1,4 +1,4 @@
-package rocks.pizzaandcoffee.yotsuba;
+package rocks.pizzaandcoffee.yotsuba.channel4;
 
 import java.util.ArrayList;
 

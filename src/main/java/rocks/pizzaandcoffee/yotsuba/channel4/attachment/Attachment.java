@@ -1,4 +1,4 @@
-package rocks.pizzaandcoffee.yotsuba.attachment;
+package rocks.pizzaandcoffee.yotsuba.channel4.attachment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

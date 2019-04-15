@@ -1,8 +1,8 @@
-package rocks.pizzaandcoffee.yotsuba;
+package rocks.pizzaandcoffee.yotsuba.channel4;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import rocks.pizzaandcoffee.yotsuba.attachment.Attachment;
+import rocks.pizzaandcoffee.yotsuba.channel4.attachment.Attachment;
 
 public class Post {
     private final String id;

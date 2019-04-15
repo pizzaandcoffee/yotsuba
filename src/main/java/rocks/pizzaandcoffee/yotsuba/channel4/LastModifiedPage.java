@@ -1,4 +1,4 @@
-package rocks.pizzaandcoffee.yotsuba;
+package rocks.pizzaandcoffee.yotsuba.channel4;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +50,7 @@ public class LastModifiedPage {
 
 
     public static ArrayList<LastModifiedPage> getPages(Board board) {
-        return LastModifiedPage.getPages(board.getBoardCode());
+        return getPages(board.getBoardCode());
     }
 
     public Integer getPage() {
